@@ -6,4 +6,11 @@ services:
       context: ./server
     image: hello-server
     ports:
-      - "8080:8080" 
+      - "8080:8080"
+
+  client:
+    build:
+      context: ./client
+    image: hello-client
+    ports:
+      - "8000:8000" 
