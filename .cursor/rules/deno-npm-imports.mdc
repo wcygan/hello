@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Deno NPM Import Prefixes
+
+When importing packages that are managed via NPM within a Deno project, ensure that the import specifier in TypeScript/JavaScript files (`.ts`, `.tsx`) includes the `npm:` prefix.
+
+This is necessary for Deno to correctly resolve these dependencies through its NPM compatibility layer.
+
+**Examples:**
+
+- Correct: `import { createClient } from "npm:@connectrpc/connect";`
+- Incorrect: `import { createClient } from "@connectrpc/connect";`
+
+This applies to imports directly in the source code. Import maps in `deno.json` handle the resolution configuration, but the `npm:` prefix might still be needed in the source depending on the map setup.
