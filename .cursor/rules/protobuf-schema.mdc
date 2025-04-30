@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Protobuf Schema Management
+
+This project uses Protocol Buffers (Protobuf) for defining data structures and service interfaces.
+
+- **Schema Definitions:** Protobuf files (`.proto`) are located in the `proto/` directory. The main service definition can be found in [proto/hello/v1/hello.proto](mdc:proto/hello/v1/hello.proto).
+- **Buf Module:** The Protobuf schemas are managed as a Buf module, configured in [proto/buf.yaml](mdc:proto/buf.yaml). The module name is `buf.build/wcygan/hello`.
+- **Code Generation:** Code generation from the Protobuf definitions is configured using Buf's generation tool, with settings defined in [buf.gen.yaml](mdc:buf.gen.yaml).
+    - Generated code is outputted to the `gen/` directory.
+    - The Go package prefix for generated code is `github.com/wcygan/proto/generated/go`.
