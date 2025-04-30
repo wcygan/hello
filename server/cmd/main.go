@@ -35,17 +35,15 @@ func main() {
 	mux.Handle(path, handler)
 
 	reflector := grpcreflect.NewStaticReflector(
-		hellov1connect.GreeterServiceName, // Add the service name here
+		hellov1connect.GreeterServiceName,
 	)
 	mux.Handle(grpcreflect.NewHandlerV1(reflector))
 	mux.Handle(grpcreflect.NewHandlerV1Alpha(reflector))
 
 	fmt.Println("Server listening on :8080 with reflection enabled")
 	err := http.ListenAndServe(
-		"localhost:8080",
-		// Use h2c so we can serve HTTP/2 without TLS.
+		":8080",
 		h2c.NewHandler(mux, &http2.Server{}),
-		// mux, // Simple HTTP/1.1 for now
 	)
 	if err != nil {
 		log.Fatalf("failed to serve: %v", err)

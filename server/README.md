@@ -6,6 +6,20 @@
 go run cmd/main.go
 ```
 
+## Docker
+
+Build the Docker image (run from the `server` directory):
+
+```bash
+docker build -t hello-server .
+```
+
+Run the container:
+
+```bash
+docker run -p 8080:8080 hello-server
+```
+
 ## Testing
 
 Request:
