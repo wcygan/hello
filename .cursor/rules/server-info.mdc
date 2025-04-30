@@ -1,0 +1,100 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Server Information
+
+This document provides details on building, deploying, and testing the Go server component of the `hello` project.
+
+## Implementation
+
+The main server logic is implemented in Go and can be found in [server/cmd/main.go](mdc:server/cmd/main.go). It uses ConnectRPC for handling RPCs.
+
+## RPC Service
+
+The server implements the `GreeterService` defined in the Protobuf schema at [proto/hello/v1/hello.proto](mdc:proto/hello/v1/hello.proto).
+
+- **Service Name:** `hello.v1.GreeterService`
+- **Method:** `SayHello`
+- **Request Type:** `hello.v1.SayHelloRequest`
+- **Response Type:** `hello.v1.SayHelloResponse`
+
+## Building
+
+### Local Build
+
+You can build the server locally using the Go toolchain:
+
+```bash
+# Navigate to the server directory
+cd server
+# Build the binary
+go build ./cmd/main.go
+```
+
+### Docker Build
+
+A Dockerfile is provided for containerizing the server: [server/Dockerfile](mdc:server/Dockerfile).
+
+```bash
+# Navigate to the server directory
+cd server
+# Build the Docker image
+docker build -t hello-server .
+```
+
+## Deployment
+
+### Local Deployment
+
+Run the server directly using Go:
+
+```bash
+# Navigate to the server directory
+cd server
+# Run the main application
+go run cmd/main.go
+```
+The server listens on port `8080`.
+
+### Docker Deployment
+
+Run the server using the Docker image:
+
+```bash
+docker run -p 8080:8080 hello-server
+```
+
+### Docker Compose Deployment
+
+A Docker Compose file is available at [docker-compose.yml](mdc:docker-compose.yml) for easier management.
+
+```bash
+docker-compose up -d server
+```
+
+## Testing
+
+You can test the running server using `grpcurl` or `curl`. See examples in the [server/README.md](mdc:server/README.md).
+
+### Using `grpcurl`
+
+```bash
+grpcurl \
+  -plaintext \
+  -d '{"name": "World"}' \     
+  localhost:8080 \
+  hello.v1.GreeterService/SayHello
+```
+
+### Using `curl`
+
+```bash
+curl \
+  --header "Content-Type: application/json" \
+  --header "Connect-Protocol-Version: 1" \
+  --data '{"name": "World"}' \
+  --request POST \
+  http://localhost:8080/hello.v1.GreeterService/SayHello
+```
