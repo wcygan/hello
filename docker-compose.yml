@@ -13,4 +13,4 @@ services:
       context: ./client
     image: hello-client
     ports:
-      - "8000:8000" 
+      - "8000:8000"
