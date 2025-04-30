@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "@buf/wcygan_hello.bufbuild_es": "npm:@buf/wcygan_hello.bufbuild_es@2.2.5-20250429225917-23d5973e7dd6.1",
+    "@buf/wcygan_hello.connectrpc_query-es": "npm:@buf/wcygan_hello.connectrpc_query-es@2.0.1-20250429225917-23d5973e7dd6.2",
+    "@buf/wcygan_hello.grpc_web": "npm:@buf/wcygan_hello.grpc_web@1.5.0-20250429225917-23d5973e7dd6.1",
+    "@connectrpc/connect": "npm:@connectrpc/connect@^2.0.2",
+    "@connectrpc/connect-web": "npm:@connectrpc/connect-web@^2.0.2"
+  }
+}
